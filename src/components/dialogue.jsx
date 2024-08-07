@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./dialogue.css";
 
-const Dialogue = () => {
+const Dialogue = ({ clickCount }) => {
   const [fact, setFact] = useState("");
 
   useEffect(() => {
@@ -28,11 +28,22 @@ const Dialogue = () => {
     fetchFact();
   }, []);
 
+  const [isVisible, setIsVisible] = useState(true);
+
+  const handleClick = () => {
+    setIsVisible(false);
+  };
+
+  if (!isVisible) {
+    return null;
+  }
+
   return (
     <div className="message">
-      <div className="close"></div>
+      <div className="close" onClick={handleClick}></div>
       <div className="box">
         <p>{fact}</p>
+        <p>{clickCount}</p>
       </div>
     </div>
   );
