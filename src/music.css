@@ -1,0 +1,181 @@
+.music {
+    /* Allow the music element to take up remaining space */
+    max-height: 400px;
+    width: 100%;
+    /* Make the music element fill the height */
+    background-color: #eaeff1;
+    padding: 2.5%;
+    border-radius: 10px;
+    animation: movedown 1s ease-in forwards;
+    bottom: 0;
+    margin-top: 0%;
+    margin-bottom: 0;
+    display: grid;
+    grid-template-rows: 20% 80%;
+    background-color: #9210b0;
+    opacity: 0.8;
+    background-color: #9210b0;
+    opacity: 0.9;
+    background-color: rgba(147, 16, 176, 0.89);
+    opacity: 0.9;
+    overflow-y: scroll;
+    background-image: linear-gradient(30deg, #c06d00 12%, transparent 12.5%, transparent 87%, #c06d00 87.5%, #c06d00), linear-gradient(150deg, #c06d00 12%, transparent 12.5%, transparent 87%, #c06d00 87.5%, #c06d00), linear-gradient(30deg, #c06d00 12%, transparent 12.5%, transparent 87%, #c06d00 87.5%, #c06d00), linear-gradient(150deg, #c06d00 12%, transparent 12.5%, transparent 87%, #c06d00 87.5%, #c06d00), linear-gradient(60deg, #c06d0077 25%, transparent 25.5%, transparent 75%, #c06d0077 75%, #c06d0077), linear-gradient(60deg, #c06d0077 25%, transparent 25.5%, transparent 75%, #c06d0077 75%, #c06d0077);
+    background-size: 62px 109px;
+    background-position: 0 0, 0 0, 31px 54px, 31px 54px, 0 0, 31px 54px;
+}
+
+.login-btn {
+    font-family: "AkiraExpanded-SuperBold";
+
+}
+
+.music-wrap {
+    display: grid;
+    align-items: center;
+    /* Vertically center the items */
+    grid-template-columns: repeat(2, 1fr);
+    background-color: #fab55a;
+    /* max-width: 90%; */
+    gap: 5px;
+    justify-content: end;
+    border-radius: 30px;
+    /* max-width: 100px;
+    max-height: 100px; */
+    /* margin-left: 2em; */
+    padding: 2%;
+}
+
+.music h1 {
+    width: auto;
+    font-family: "AkiraExpanded-SuperBold";
+    font-size: 22px;
+}
+
+.music h2 {
+    width: auto;
+    font-family: "AkiraExpanded-SuperBold";
+    font-size: 12px;
+}
+
+.music-wrap p {
+    text-align: end;
+    font-size: 16px;
+
+    font-family: "AkiraExpanded-SuperBold";
+}
+
+
+.controls {
+    display: grid;
+    justify-content: center;
+    bottom: 0;
+    margin-bottom: 0;
+    grid-template-columns: repeat(3, 1fr);
+    height: 60%;
+}
+
+.musicheader {
+    display: grid;
+    grid-template-columns: 60% 45%;
+    max-height: 20%;
+
+}
+
+.playlists {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.playlist-item {
+    background-color: rgb(0, 0, 0, 0.5);
+    display: flex;
+    gap: 10px;
+    padding: 1em;
+    border-radius: 15px;
+    height: 200px;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+}
+
+.playlist-details {
+    height: auto;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.playlist-name {
+    display: -webkit-box;
+    /* Fallback for older browsers */
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    /* Number of lines before truncating */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    width: 50%;
+    line-height: 15px;
+    max-height: 30px;
+    text-align: left;
+}
+
+.playlist-details p {
+    font-size: 12px;
+    color: white;
+    font-weight: bold;
+    visibility: visible;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    display: block;
+    /* z-index: 2; */
+}
+
+.playlists ul {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    list-style: none;
+}
+
+.musicheader img {
+    max-height: 100%;
+    border-radius: 100%;
+    margin-left: 1em;
+    transition: all 0.3s ease-in-out;
+
+}
+
+.playlist-image {
+    overflow: hidden;
+    min-height: 120px;
+    min-width: 120px;
+}
+
+.playlist-image img {
+
+    max-width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+    aspect-ratio: 1/1;
+
+
+}
+
+.musicheader img:hover {
+    transform: scale(1.02);
+    /* animation: roll 2s; */
+    /* box-shadow: 4px 4px 6px #4f4f4f, -4px -4px 8px #ffffff; */
+}
+
+@keyframes roll {
+    from {
+        opacity: 0;
+        transform: translateX(-60px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0px);
+    }
+}

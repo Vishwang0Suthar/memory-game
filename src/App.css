@@ -1,0 +1,345 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat");
+@import url('https://fonts.cdnfonts.com/css/modern-typewriter');
+@import url(https://db.onlinewebfonts.com/c/fa974172da51d6d4a94a12485b2bc422?family=Courier+10+Pitch+W07+Rom);
+@import url(https://db.onlinewebfonts.com/c/6a6c946c81961ceab1711da6da2b26af?family=AkiraExpanded-SuperBold);
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #fab55a;
+    /* height: 100vh; */
+    /* display: flex; */
+
+    /* we only use vh when we are building a single page unscrollable app */
+}
+
+
+::selection {
+    color: #000000;
+    background-color: white;
+}
+
+.game {
+    display: grid;
+    position: relative;
+    grid-template-columns: 28% 36% 36%;
+    gap: 8px;
+    margin: 2em 20px 1em 10px;
+    align-items: center;
+}
+
+.title {
+    background-color: rgba(0, 0, 0, 0.4);
+    padding: 2%;
+    border-radius: 5px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    /* margin: 0px 7px 0px 10px; */
+    border-radius: 10px;
+    min-height: 100%;
+}
+
+.title>.head>h1 {
+    margin-top: 5px;
+    font-family: "AkiraExpanded-SuperBold";
+    font-size: 25px;
+    justify-content: left;
+}
+
+.desc {
+    position: relative;
+    min-height: 100%;
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+
+}
+
+.desc :nth-child(2) {
+    max-width: 100%;
+    position: relative;
+    /* display: grid; */
+    font-size: 20px;
+    font-family: "Courier 10 Pitch W07 Rom";
+    overflow: hidden;
+    /* Ensures the content is not revealed until the animation */
+    /* border-right: .15em solid orange; */
+    /* The typwriter cursor */
+    white-space: nowrap;
+    /* Keeps the content on a single line */
+    margin: 0 auto;
+    /* Gives that scrolling effect as the typing happens */
+    letter-spacing: .1em;
+    /* Adjust as needed */
+    animation: typing 2s steps(40, end), blink-caret .85s step-end infinite;
+    white-space: initial;
+}
+
+
+.title>.desc :nth-child(3) ::before {
+    display: none;
+}
+
+.title>.desc :nth-child(3) {
+    max-width: 100%;
+    /* display: grid; */
+    font-size: 20px;
+    opacity: 0;
+    /* Start with opacity 0 */
+    font-family: "Courier 10 Pitch W07 Rom";
+    overflow: hidden;
+    /* Ensures the content is not revealed until the animation */
+    border-right: .15em solid orange;
+    /* The typewriter cursor */
+    white-space: nowrap;
+    /* Keeps the content on a single line */
+    margin: 0 auto;
+    /* Gives that scrolling effect as the typing happens */
+    letter-spacing: .1em;
+    /* Adjust as needed */
+    animation: typing-2 2s steps(40, end), blink-caret .85s step-end infinite, fadeIn 1s forwards;
+    /* Use fadeIn animation to set opacity to 1 */
+    white-space: initial;
+    animation-delay: 2s;
+}
+
+@keyframes typing-2 {
+    from {
+        width: 0%;
+    }
+
+    to {
+        width: 100%;
+    }
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+        /* Set opacity to 1 after the typing animation */
+    }
+}
+
+
+/* The typing effect */
+
+@keyframes typing {
+    from {
+        opacity: 0.5;
+        width: 0%
+    }
+
+    to {
+        opacity: 1;
+        width: 100%
+    }
+}
+
+
+/* The typewriter cursor effect */
+
+@keyframes blink-caret {
+
+    from,
+    to {
+        border-color: transparent
+    }
+
+    50% {
+        border-color: orange;
+    }
+}
+
+
+
+
+/* .title>.desc>p {
+    font-size: 20px;
+    font-family: "Courier 10 Pitch W07 Rom";
+} */
+
+.board {
+    width: calc(640px - (640px * 0.15));
+    height: calc(960px - (960px * 0.25));
+    display: flex;
+    /* margin-right: 12px; */
+    flex-wrap: wrap;
+    animation: movedown 2s ease-in;
+    border-radius: 0.5%;
+    background-color: #9210b0;
+    perspective: 1000px;
+    box-shadow: 5px 5px 5px #000000
+}
+
+.card {
+    width: calc(25% - 10px);
+    height: calc(25% - 20px);
+    margin: 5px;
+    top: 5px;
+    background-color: rgb(0, 0, 0);
+    transform-style: preserve-3d;
+    border: 2px rgb(255, 255, 255) solid;
+    border-radius: 3.5%;
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.5s;
+}
+
+.card:hover {
+    transition: 0.5s;
+    box-shadow: 3px 3px 6px #dac9df, 1px 1px 2px #ffffff;
+}
+
+.flip {
+    transform: rotateY(180deg);
+}
+
+.front {
+    width: 100%;
+    position: absolute;
+    padding: 5px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    backface-visibility: hidden;
+    z-index: 9999;
+}
+
+.back {
+    width: 100%;
+    padding: 0px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    backface-visibility: hidden;
+    transition: filter 300ms;
+}
+
+.back:is(:hover,
+    :focus) {
+    filter: hue-rotate(var(--random-rotation));
+}
+
+.front {
+    transform: rotateY(180deg);
+    z-index: 2;
+}
+
+.wild {
+    background-color: rgba(0, 0, 0, 0.4);
+    padding: 2%;
+    display: grid;
+    grid-template-rows: 40% 60%;
+    height: 100%;
+    border-radius: 1.5%;
+    margin-right: 10px;
+    width: auto;
+}
+
+.about {
+    align-items: center;
+    justify-content: center;
+    height: 70%;
+}
+
+.about a {
+    text-decoration: none;
+    display: block;
+    justify-content: center;
+    color: var(--white-color);
+    padding: 1rem 0;
+    font-size: 20px;
+    margin-left: 20px;
+    font-family: "Courier 10 Pitch W07 Rom";
+}
+
+.about a i {
+    padding-right: -2rem;
+    color: #ffa837;
+    transition: all 0.5s;
+}
+
+.about a:hover i {
+    padding-right: 0.8rem;
+    border: #000000;
+}
+
+.about h2 {
+    font-family: "AkiraExpanded-SuperBold";
+    font-size: 25px;
+    justify-content: center;
+    align-content: center;
+}
+
+/* html body div#root div.game div.wild div.about a i.fa-solid.fa-copy {
+    position: absolute;
+    right: 2em;
+} */
+
+
+/* .btn {
+    display: inline-block;
+    margin: 0 10px;
+    padding: 10px 20px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #2b2b2b;
+    background-color: #eaeff1;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    box-shadow: 4px 4px 8px #bec7ce, -4px -4px 8px #ffffff;
+} */
+
+.btn:hover {
+    box-shadow: none;
+    transform: translate(2px, 2px);
+}
+
+.btn:active {
+    box-shadow: inset 2px 2px 4px #bec7ce, inset -2px -2px 4px #ffffff;
+}
+
+@keyframes movedown {
+    from {
+        transform: translateY(60px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+
+/* @keyframes expand {
+    from{
+        transform
+    }
+    to{
+
+    }
+} */
+
+
+@media only screen and (max-width: 768px) {
+    .game {
+        display: grid;
+        position: relative;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 10px;
+    }
+}
