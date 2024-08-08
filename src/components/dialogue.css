@@ -75,6 +75,15 @@
     border: white solid 2px;
 }
 
+.button:nth-child(2) {
+    aspect-ratio: 1/1;
+}
+
+.button-bx {
+    display: flex;
+    gap: 10px;
+}
+
 .button p {
     padding: 0px;
     /* color: black; */
