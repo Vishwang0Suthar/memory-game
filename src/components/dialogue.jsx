@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import "./dialogue.css";
+import ReactShare from "./react-share";
 
 const Dialogue = ({ clickCount }) => {
   const [fact, setFact] = useState("");
+  const [showShare, setShowShare] = useState(true);
 
   useEffect(() => {
     const fetchFact = async () => {
@@ -32,6 +34,10 @@ const Dialogue = ({ clickCount }) => {
 
   const handleClick = () => {
     setIsVisible(false);
+  };
+  const handleShareClick = () => {
+    setShowShare(true);
+    // setIsVisible(false);
   };
 
   if (!isVisible) {
@@ -85,7 +91,7 @@ const Dialogue = ({ clickCount }) => {
                 />
               </svg>
             </div>
-            <div className="button">
+            <div className="button" id="share" onClick={handleShareClick}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -106,6 +112,7 @@ const Dialogue = ({ clickCount }) => {
           </div>
         </div>
       </div>
+      {showShare && <ReactShare visible={showShare} />}
     </div>
   );
 };
