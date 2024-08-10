@@ -7,7 +7,7 @@ import Music from "./music.jsx";
 import About from "./about.jsx";
 import { setClientToken } from "./spotify";
 import Dialogue from "./components/dialogue.jsx";
-
+import langda from "../langda.jpg";
 const initialCards = [
   { order: Math.ceil(Math.random() * 16), matched: false, icon: "/blinky.gif" },
   { order: Math.ceil(Math.random() * 16), matched: false, icon: "/huh.jpeg" },
@@ -189,7 +189,7 @@ function App() {
             onMouseEnter={hue()}
           >
             <img src={card.icon} alt={`Card ${index}`} className="front" />
-            <img src="langda.jpg" alt="Card Back" className="back" />
+            <img src={langda} alt="Card Back" className="back" />
           </div>
         ))}
       </div>
