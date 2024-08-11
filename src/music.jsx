@@ -4,6 +4,7 @@ import { setClientToken, getUserPlaylists } from "./spotify"; // Import the new 
 
 import APIKit from "./spotify";
 import "./music.css";
+import Playlist from "./components/playlist";
 
 export default function Music() {
   const [image, setImage] = useState("/logo.jpg");
@@ -42,25 +43,7 @@ export default function Music() {
           <img src={image} />
         </div>
       </div>
-      <div className="playlists">
-        <h2>Your Playlists</h2>
-        <ul>
-          {playlists.map((playlist) => (
-            <li key={playlist.id} className="playlist-item">
-              <div className="playlist-image">
-                <img
-                  src={playlist.images[0]?.url || "/default_playlist.jpg"}
-                  alt={playlist.name}
-                />
-              </div>
-              <div className="playlist-details">
-                <p className="playlist-name">{playlist.name}</p>
-                <p className="playlist-track-count">{playlist.tracks.total}</p>
-              </div>
-            </li>
-          ))}
-        </ul>
-      </div>
+      <Playlist data={playlists} />
       <div className="controls">
         {/* <button className="btn prev-btn">Prev</button>
         <button className="btn play-btn">Play</button>
