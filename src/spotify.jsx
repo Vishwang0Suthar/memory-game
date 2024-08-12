@@ -1,15 +1,9 @@
 import axios from "axios";
-// import REACT_APP_SPOTIFY_REDIRECT_URI from "../.env";
+
 // Get environment variables
 const authEndpoint = "https://accounts.spotify.com/authorize?";
 const clientId = "ead5b4050a0147c8b68b917c383ff6d7";
-const localRedirectUri = "http://localhost:5173/"; // Local development URI
-const productionRedirectUri = "https://memory-game-flax-six.vercel.app/"; // Production URI
-
-const redirectUri =
-  import.meta.env.MODE === "production"
-    ? productionRedirectUri
-    : localRedirectUri;
+const redirectUri = "https://memory-game-flax-six.vercel.app/"; // Use environment variable
 const scopes = ["user-library-read", "playlist-read-private"];
 
 export const loginEndpoint = `${authEndpoint}client_id=${clientId}&redirect_uri=${encodeURIComponent(
