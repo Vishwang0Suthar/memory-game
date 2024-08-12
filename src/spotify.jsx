@@ -13,7 +13,15 @@ const apiClient = axios.create({
   baseURL: "https://api.spotify.com/v1/",
 });
 
-// Add this function to your apiClient setup file
+// Set token in axios instance
+export const setClientToken = (token) => {
+  if (token) {
+    apiClient.defaults.headers.Authorization = `Bearer ${token}`;
+  } else {
+    throw new Error("No token provided for authorization");
+  }
+};
+
 export const getUserPlaylists = async () => {
   try {
     const response = await apiClient.get("me/playlists");
@@ -24,11 +32,14 @@ export const getUserPlaylists = async () => {
   }
 };
 
-export const setClientToken = (token) => {
-  apiClient.interceptors.request.use(async function (config) {
-    config.headers.Authorization = "Bearer " + token;
-    return config;
-  });
+export const getPlaylistTracks = async (playlist_id) => {
+  try {
+    const response = await apiClient.get(`playlists/${playlist_id}/tracks`);
+    return response.data.items;
+  } catch (error) {
+    console.error("Error fetching playlist tracks:", error);
+    throw error;
+  }
 };
 
 export default apiClient;
