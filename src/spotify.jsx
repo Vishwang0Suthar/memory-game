@@ -1,12 +1,15 @@
 import axios from "axios";
-
+// import REACT_APP_SPOTIFY_REDIRECT_URI from "../.env";
+// Get environment variables
 const authEndpoint = "https://accounts.spotify.com/authorize?";
 const clientId = "ead5b4050a0147c8b68b917c383ff6d7";
-const redirectUri = "http://localhost:5173";
+const redirectUri = import.meta.env.REACT_APP_SPOTIFY_REDIRECT_URI;
 const scopes = ["user-library-read", "playlist-read-private"];
 
-export const loginEndpoint = `${authEndpoint}client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join(
-  "%20"
+export const loginEndpoint = `${authEndpoint}client_id=${clientId}&redirect_uri=${encodeURIComponent(
+  redirectUri
+)}&scope=${encodeURIComponent(
+  scopes.join(" ")
 )}&response_type=token&show_dialog=true`;
 
 const apiClient = axios.create({

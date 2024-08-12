@@ -5,6 +5,7 @@
     /* Make the music element fill the height */
     background-color: #eaeff1;
     padding: 2.5%;
+    position: relative;
     border-radius: 10px;
     animation: movedown 1s ease-in forwards;
     /* bottom: 0;
@@ -90,6 +91,7 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
+    /* position: relative; */
 }
 
 .spinner-container {
@@ -215,6 +217,9 @@
 
 .track-header {
     display: flex;
+    top: 0;
+    z-index: 1;
+    /* position: sticky; */
     align-items: center;
     justify-content: space-between;
     flex-direction: row-reverse;
