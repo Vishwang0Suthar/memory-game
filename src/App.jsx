@@ -5,9 +5,10 @@ import { handleMatch } from "./script.js";
 import Login from "./login.jsx";
 import Music from "./music.jsx";
 import About from "./about.jsx";
-import { setClientToken } from "./spotify";
+// import { setClientToken } from "./spotify";
 import Dialogue from "./components/dialogue.jsx";
 import langda from "../langda.jpg";
+import { setClientToken } from "./spotify.jsx";
 const initialCards = [
   { order: Math.ceil(Math.random() * 16), matched: false, icon: "/blinky.gif" },
   { order: Math.ceil(Math.random() * 16), matched: false, icon: "/huh.jpeg" },
@@ -140,16 +141,23 @@ function App() {
 
   useEffect(() => {
     const token = window.localStorage.getItem("token");
+    const tokenExpiry = window.localStorage.getItem("token-expiry");
     const hash = window.location.hash;
     window.location.hash = "";
-    if (!token && hash) {
-      const _token = hash.split("&")[0].split("=")[1];
-      window.localStorage.setItem("token", _token);
-      setToken(_token);
-      setClientToken(_token);
+
+    if (!token || (tokenExpiry && new Date().getTime() > tokenExpiry)) {
+      if (hash) {
+        const _token = hash.split("&")[0].split("=")[1];
+        const expiresIn = parseInt(hash.split("expires_in=")[1].split("&")[0]);
+        const expiryTime = new Date().getTime() + expiresIn * 1000; // Convert seconds to milliseconds
+        window.localStorage.setItem("token", _token);
+        window.localStorage.setItem("token-expiry", expiryTime.toString());
+        setToken(_token);
+        // setClientToken(_token);
+      }
     } else {
       setToken(token);
-      setClientToken(token);
+      // setClientToken(token);
     }
   }, []);
 
@@ -201,7 +209,7 @@ function App() {
             <Login />
           </div>
         ) : (
-          <Music />
+          <Music token={token} />
         )}
       </div>
     </div>

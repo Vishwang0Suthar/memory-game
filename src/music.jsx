@@ -6,28 +6,33 @@ import APIKit from "./spotify";
 import "./music.css";
 import Playlist from "./components/playlist";
 
-export default function Music() {
-  const [image, setImage] = useState("/logo.jpg");
+export default function Music({ token }) {
+  const [image, setImage] = useState("");
   const [name, setName] = useState("Magan");
   const [playlists, setPlaylists] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Set your token here
-        const token = window.localStorage.getItem("spotify-token"); // Replace with your token retrieval method
+        // // Get token from localStorage
+        // const token = window.localStorage.getItem("spotify-token");
+        // if (!token) {
+        //   throw new Error("No Spotify token found");
+        // }
+
+        // Set the token in the API client
         setClientToken(token);
 
         // Fetch user data
         const userData = await apiClient.get("me");
-        setImage(userData.data.images[0].url);
+        setImage(userData.data.images[0]?.url || "/default_profile_image.jpg");
         setName(userData.data.display_name);
 
         // Fetch playlists
         const userPlaylists = await getUserPlaylists();
         setPlaylists(userPlaylists);
       } catch (error) {
-        console.error("Error fetching data:", error);
+        console.error("Error fetching data:", error.message);
       }
     };
 
