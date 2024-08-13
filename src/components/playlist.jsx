@@ -4,13 +4,30 @@ import { getPlaylistTracks } from "../spotify";
 import ClipLoader from "react-spinners/ClipLoader";
 import { PuffLoader } from "react-spinners";
 
-const Playlist = ({ data }) => {
+const Playlist = ({ data, isPlaying, onTogglePlaying }) => {
   const [tracks, setTracks] = useState([]);
   const [selectedPlaylist, setSelectedPlaylist] = useState(null);
-  const [viewState, setViewState] = useState("playlists"); // "playlists" or "tracks"
+  const [viewState, setViewState] = useState("playlists");
+  const [prevViewState, setPrevViewState] = useState(null);
   const [loading, setLoading] = useState(false);
   const [imageLoading, setImageLoading] = useState({});
   const [selectedPlaylistName, setSelectedPlaylistName] = useState("");
+  const [currentAudio, setCurrentAudio] = useState(null);
+
+  const handlePlay = (audioElement) => {
+    onTogglePlaying();
+    if (currentAudio && currentAudio !== audioElement) {
+      currentAudio.pause(); // Pause the currently playing audio
+      currentAudio.currentTime = 0; // Optionally, reset to the beginning
+    }
+    setCurrentAudio(audioElement); // Set the new audio as the current one
+  };
+
+  const handlePause = () => {
+    onTogglePlaying();
+
+    setCurrentAudio(null); // Clear the current audio when paused
+  };
   const handleImageLoad = (index) => {
     setImageLoading((prevState) => ({
       ...prevState,
@@ -42,13 +59,25 @@ const Playlist = ({ data }) => {
   };
 
   const handleForthClick = () => {
-    if (viewState == tracks) {
+    console.log("in");
+
+    if (prevViewState !== null) {
       setViewState("tracks");
+      console.log("if");
     }
   };
 
   const handleBackClick = () => {
     setSelectedPlaylist(null);
+    if (
+      prevViewState !== "null" &&
+      viewState !== "playlists" &&
+      prevViewState !== "tracks"
+    ) {
+      onTogglePlaying();
+    }
+
+    setPrevViewState("tracks");
     setViewState("playlists"); // Switch back to playlist view
   };
 
@@ -158,7 +187,11 @@ const Playlist = ({ data }) => {
                   </div>
                   {track.track.preview_url ? (
                     <div className="track-preview">
-                      <audio controls>
+                      <audio
+                        controls
+                        onPlay={(e) => handlePlay(e.target)}
+                        onPause={handlePause}
+                      >
                         <source
                           src={track.track.preview_url}
                           type="audio/mpeg"
