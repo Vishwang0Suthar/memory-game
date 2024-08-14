@@ -77,10 +77,12 @@ export default function Music({ token }) {
                 className="music-wrap-img-playing"
                 alt="Profile"
               />
-              <div className="dot"></div>
+              <div className="red-dot">
+                <div className="dot"></div>
+              </div>
             </div>
           ) : (
-            <div>
+            <div className="cd-unplay">
               <img src={image} className="music-wrap-img" alt="Profile" />
             </div>
           )}
