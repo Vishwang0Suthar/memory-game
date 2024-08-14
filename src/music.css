@@ -186,7 +186,7 @@
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: #CBCBCB;
+    background-color: #2d2d2d;
     outline: 2px solid #FFF;
     outline-offset: -2px;
     border: .1px solid #B7B7B7;
@@ -195,6 +195,8 @@
 ::-webkit-scrollbar-thumb:hover {
     background-color: #909090;
 }
+
+
 
 .playlist-image {
     overflow: hidden;
@@ -377,10 +379,35 @@
 
 
 .music-wrap-img-playing {
-    animation: spin 5s ease-in-out infinite;
+    animation: spin 5s linear infinite;
     scale: 1.1;
     /* transition: transform ease-in-out; */
     height: 50px;
     aspect-ratio: 1/1;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.cd-player {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+
+    /* aspect-ratio: 1/1; */
+}
+
+.cd-player img {
+    z-index: -1;
+}
+
+.dot {
+    position: absolute;
+    top: 50%;
+    transform: translateX(50%);
+    left: 50%;
+    height: 5px;
+    border-radius: 100%;
+    aspect-ratio: 1/1;
+    background-color: #fab55a;
+    z-index: 1;
 }

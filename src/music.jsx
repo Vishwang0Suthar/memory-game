@@ -65,11 +65,25 @@ export default function Music({ token }) {
             ></path>
           </svg>
           <p>{name}</p>
-          <img
+          {/* <img
             src={image}
             className={isPlaying ? "music-wrap-img-playing" : "music-wrap-img"}
             alt="Profile"
-          />
+          /> */}
+          {isPlaying ? (
+            <div className="cd-player">
+              <img
+                src={image}
+                className="music-wrap-img-playing"
+                alt="Profile"
+              />
+              <div className="dot"></div>
+            </div>
+          ) : (
+            <div>
+              <img src={image} className="music-wrap-img" alt="Profile" />
+            </div>
+          )}
         </div>
       </div>
       <Playlist
