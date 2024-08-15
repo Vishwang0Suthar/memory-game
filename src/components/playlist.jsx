@@ -177,13 +177,33 @@ const Playlist = ({ data, isPlaying, onTogglePlaying }) => {
                   style={imageLoading[index] ? { display: "none" } : {}}
                 />
                 <div className="track-details">
-                  <div className="det">
-                    <p className="track-name">{track.track.name}</p>
-                    <p className="track-artist">
-                      {track.track.artists
-                        .map((artist) => artist.name)
-                        .join(", ")}
-                    </p>
+                  <div className="det-up">
+                    <div className="det">
+                      <p className="track-name">{track.track.name}</p>
+                      <p className="track-artist">
+                        {track.track.artists
+                          .map((artist) => artist.name)
+                          .join(", ")}
+                      </p>
+                    </div>
+                    <a href={track.track.external_urls.spotify} target="_blank">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke-width="2"
+                        height={16}
+                        width={16}
+                        stroke="white"
+                        class="size-6"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25"
+                        />
+                      </svg>
+                    </a>
                   </div>
                   {track.track.preview_url ? (
                     <div className="track-preview">
