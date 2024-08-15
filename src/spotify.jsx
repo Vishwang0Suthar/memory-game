@@ -3,7 +3,7 @@ import axios from "axios";
 // Get environment variables
 const authEndpoint = "https://accounts.spotify.com/authorize?";
 const clientId = "ead5b4050a0147c8b68b917c383ff6d7";
-const redirectUri = "https://memory-game-flax-six.vercel.app/"; // Use environment variable
+const redirectUri = "https://memory-game-flax-six.vercel.app/#"; // Use environment variable
 const scopes = ["user-library-read", "playlist-read-private"];
 
 export const loginEndpoint = `${authEndpoint}client_id=${clientId}&redirect_uri=${encodeURIComponent(
