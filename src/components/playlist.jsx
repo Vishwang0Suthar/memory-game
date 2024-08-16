@@ -168,6 +168,7 @@ const Playlist = ({ data, isPlaying, onTogglePlaying }) => {
         <ul className="track-list">
           {tracks.map((track, index) => (
             <li key={index} className="track-item">
+              <div className="track-bg"></div>
               <div className="cover-det">
                 <img
                   src={track.track.album.images[0]?.url || "/default_track.jpg"}
