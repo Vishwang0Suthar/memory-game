@@ -258,8 +258,9 @@ body {
 
 .about a {
     text-decoration: none;
-    display: block;
-    justify-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: start;
     color: var(--white-color);
     padding: 0.5rem 0;
     font-size: 20px;
@@ -268,7 +269,8 @@ body {
     transition: all 300ms ease-in-out;
 }
 
-.about a i {
+.about a i,
+.about a svg {
     /* padding-right: -2rem; */
     color: #ffa837;
     transition: all 300ms ease-in-out;
@@ -282,7 +284,8 @@ body {
     border: #000000;
 }
 
-.about a:hover i {
+.about a:hover i,
+.about a:hover svg {
     /* padding-right: 0.8rem; */
     scale: 1.2;
     animation: dingle 400ms linear;

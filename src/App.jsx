@@ -66,7 +66,7 @@ function App() {
   const [secondCard, setSecondCard] = useState(null);
   const [cards, setCards] = useState(initialCards);
   const [clickCount, setClickCount] = useState(0);
-  const [allMatched, setAllMatched] = useState(false);
+  const [allMatched, setAllMatched] = useState(true);
 
   const audio_click = new Audio("audio/00click.mp3");
   audio_click.load();
