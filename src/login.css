@@ -1,7 +1,12 @@
+.musicl {
+    flex: 1;
+}
+
 .login-page {
     background-color: #1f1f1f;
     height: 100%;
-    min-height: 500px;
+
+    /* min-height: 500px; */
     width: 100%;
     display: flex;
     align-items: center;

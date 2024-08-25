@@ -9,6 +9,7 @@ import About from "./about.jsx";
 import Dialogue from "./components/dialogue.jsx";
 import langda from "../langda.jpg";
 import { setClientToken } from "./spotify.jsx";
+import ParentComponent from "./components/dialogueMain.jsx";
 const initialCards = [
   { order: Math.ceil(Math.random() * 16), matched: false, icon: "/blinky.gif" },
   { order: Math.ceil(Math.random() * 16), matched: false, icon: "/huh.jpeg" },
@@ -66,7 +67,7 @@ function App() {
   const [secondCard, setSecondCard] = useState(null);
   const [cards, setCards] = useState(initialCards);
   const [clickCount, setClickCount] = useState(0);
-  const [allMatched, setAllMatched] = useState(true);
+  const [allMatched, setAllMatched] = useState(false);
 
   const audio_click = new Audio("audio/00click.mp3");
   audio_click.load();
@@ -201,7 +202,7 @@ function App() {
           </div>
         ))}
       </div>
-      {allMatched && <Dialogue clickCount={clickCount} />}
+      {allMatched && <ParentComponent clickCount={clickCount} />}
       <div className="wild">
         <About />
         {!token ? (

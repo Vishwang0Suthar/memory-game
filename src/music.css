@@ -1,13 +1,13 @@
 .music {
     /* Allow the music element to take up remaining space */
-    min-height: 500px;
+    /* min-height: 500px; */
     width: 100%;
     /* Make the music element fill the height */
     background-color: #eaeff1;
     padding: 2.5%;
     position: relative;
     border-radius: 10px;
-    /* flex: 1; */
+    flex: 1;
     animation: movedown 1s ease-in forwards;
     /* bottom: 0;
     margin-top: 0%;
