@@ -39,9 +39,13 @@
     /* box-shadow: 10px 10px rgba(45, 45, 45, 0.3); */
     border-radius: 16px;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
     opacity: 100%;
     text-align: center;
-    height: 20vh;
+    /* height: 20vh; */
     width: 40vw;
     padding: 10px 30px 10px 30px;
     user-select: none;

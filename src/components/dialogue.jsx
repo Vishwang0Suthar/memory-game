@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import "./dialogue.css";
-import ReactShare from "./react-share";
 
-const Dialogue = ({ clickCount }) => {
+const Dialogue = ({ clickCount, onShareClick, handleMainCloseClick }) => {
   const [fact, setFact] = useState("");
   const [showShare, setShowShare] = useState(true);
+  const pgRefresh = () => {
+    location.reload();
+  };
 
   useEffect(() => {
     const fetchFact = async () => {
@@ -30,27 +32,13 @@ const Dialogue = ({ clickCount }) => {
     fetchFact();
   }, []);
 
-  const [isVisible, setIsVisible] = useState(true);
-
-  const handleClick = () => {
-    setIsVisible(false);
-  };
-  const handleShareClick = () => {
-    setShowShare(true);
-    // setIsVisible(false);
-  };
-
-  if (!isVisible) {
-    return null;
-  }
-
-  const pgRefresh = () => {
-    location.reload();
-  };
+  // const handleClick = () => {
+  //   setIsVisible(false);
+  // };
 
   return (
-    <div className="message">
-      <div className="close" onClick={handleClick}>
+    <div>
+      <div className="close" onClick={handleMainCloseClick}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -91,7 +79,7 @@ const Dialogue = ({ clickCount }) => {
                 />
               </svg>
             </div>
-            <div className="button" id="share" onClick={handleShareClick}>
+            <div className="button" id="share" onClick={onShareClick}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -112,7 +100,7 @@ const Dialogue = ({ clickCount }) => {
           </div>
         </div>
       </div>
-      {showShare && <ReactShare visible={showShare} />}
+      {/* {showShare && <ReactShare visible={showShare} />} */}
     </div>
   );
 };
