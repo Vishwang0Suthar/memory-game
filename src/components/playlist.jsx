@@ -84,6 +84,18 @@ const Playlist = ({ data, isPlaying, onTogglePlaying }) => {
   return (
     <div className="playlists">
       <div className="track-header">
+        <h2>
+          {viewState === "playlists" ? (
+            "Your Playlist"
+          ) : (
+            <>
+              Tracks from
+              <br />
+              {selectedPlaylistName}
+            </>
+          )}
+        </h2>
+        <div className="play-pause"></div>
         <div className="navig">
           <div onClick={handleBackClick} className="back-button">
             <svg
@@ -122,17 +134,6 @@ const Playlist = ({ data, isPlaying, onTogglePlaying }) => {
             </svg>
           </div>
         </div>
-        <h2>
-          {viewState === "playlists" ? (
-            "Your Playlist"
-          ) : (
-            <>
-              Tracks from
-              <br />
-              {selectedPlaylistName}
-            </>
-          )}
-        </h2>
       </div>
       {loading ? (
         <div className="spinner-container">

@@ -10,6 +10,7 @@ import Dialogue from "./components/dialogue.jsx";
 import langda from "../langda.jpg";
 import { setClientToken } from "./spotify.jsx";
 import ParentComponent from "./components/dialogueMain.jsx";
+import Mobileview from "./components/mobliview.jsx";
 const initialCards = [
   { order: Math.ceil(Math.random() * 16), matched: false, icon: "/blinky.gif" },
   { order: Math.ceil(Math.random() * 16), matched: false, icon: "/huh.jpeg" },
@@ -68,9 +69,25 @@ function App() {
   const [cards, setCards] = useState(initialCards);
   const [clickCount, setClickCount] = useState(0);
   const [allMatched, setAllMatched] = useState(false);
-
+  const [isMobile, setIsMobile] = useState(false);
   const audio_click = new Audio("audio/00click.mp3");
   audio_click.load();
+
+  useEffect(() => {
+    // Function to update the state based on screen width
+    const handleResize = () => {
+      setIsMobile(window.matchMedia("(max-width: 768px)").matches);
+    };
+
+    // Set initial state
+    handleResize();
+
+    // Add event listener for resize
+    window.addEventListener("resize", handleResize);
+
+    // Cleanup event listener on component unmount
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useEffect(() => {
     // Check if all cards have been matched
@@ -163,56 +180,71 @@ function App() {
   }, []);
 
   return (
-    <div className="game" id={` ${allMatched ? "confettiContainer" : ""}`}>
-      <div className="title">
-        <div className="head">
-          <h1>Memory Game</h1>
-          <hr />
-          <br />
-        </div>
-        <div className="desc">
-          <br />
-          <p>
-            Welcome to our captivating memory game! Challenge your brain and
-            test your memory skills by matching pairs of cards consecutively.
-            But watch out, if you don't find the matching cards in time, they'll
-            play a little game of hide-and-seek. Get ready for a delightful
-            adventure of card-flipping fun!
-          </p>
-          <p> A dripy da coder production. </p>
-        </div>
-      </div>
-      <div className="board">
-        {cards.map((card, index) => (
+    <div>
+      {isMobile ? (
+        <Mobileview />
+      ) : (
+        <>
           <div
-            key={index}
-            className={`card ${
-              firstCard === card || secondCard === card || card.matched
-                ? "flip"
-                : ""
-            }`}
-            onClick={() => onCardClick(index)}
-            style={{ order: card.order }}
-            // onMouseEnter={audio_click_play}
-            onMouseLeave={audio_click_pause}
-            onMouseEnter={hue()}
+            className="game"
+            id={` ${allMatched ? "confettiContainer" : ""}`}
           >
-            <img src={card.icon} alt={`Card ${index}`} className="front" />
-            <img src={langda} alt="Card Back" className="back" />
+            <div className="title">
+              <div className="head">
+                <h1>Memory Game</h1>
+                <hr />
+                <br />
+              </div>
+              <div className="desc">
+                <br />
+                <p>
+                  Welcome to our captivating memory game! Challenge your brain
+                  and test your memory skills by matching pairs of cards
+                  consecutively. But watch out, if you don't find the matching
+                  cards in time, they'll play a little game of hide-and-seek.
+                  Get ready for a delightful adventure of card-flipping fun!
+                </p>
+                <p> A dripy da coder production. </p>
+              </div>
+            </div>
+            <div className="board">
+              {cards.map((card, index) => (
+                <div
+                  key={index}
+                  className={`card ${
+                    firstCard === card || secondCard === card || card.matched
+                      ? "flip"
+                      : ""
+                  }`}
+                  onClick={() => onCardClick(index)}
+                  style={{ order: card.order }}
+                  // onMouseEnter={audio_click_play}
+                  onMouseLeave={audio_click_pause}
+                  onMouseEnter={hue()}
+                >
+                  <img
+                    src={card.icon}
+                    alt={`Card ${index}`}
+                    className="front"
+                  />
+                  <img src={langda} alt="Card Back" className="back" />
+                </div>
+              ))}
+            </div>
+            {allMatched && <ParentComponent clickCount={clickCount} />}
+            <div className="wild">
+              <About />
+              {!token ? (
+                <div className="musicl">
+                  <Login />
+                </div>
+              ) : (
+                <Music token={token} />
+              )}
+            </div>
           </div>
-        ))}
-      </div>
-      {allMatched && <ParentComponent clickCount={clickCount} />}
-      <div className="wild">
-        <About />
-        {!token ? (
-          <div className="musicl">
-            <Login />
-          </div>
-        ) : (
-          <Music token={token} />
-        )}
-      </div>
+        </>
+      )}
     </div>
   );
 }
