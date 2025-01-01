@@ -52,7 +52,7 @@ body {
 
 }
 
-.title>h1 {
+.title h1 {
     padding-top: 10px;
     align-self: start;
     font-family: "AkiraExpanded-SuperBold";
@@ -95,13 +95,21 @@ body {
     display: none;
 }
 
+.title p {
+    font-family: "Courier 10 Pitch W07 Rom";
+    font-size: 20px;
+
+}
+
+.title p:last-child {
+    color: #FAB12F;
+}
+
 .title>.desc :nth-child(3) {
     max-width: 100%;
     /* display: grid; */
-    font-size: 20px;
     opacity: 0;
     /* Start with opacity 0 */
-    font-family: "Courier 10 Pitch W07 Rom";
     overflow: hidden;
     /* Ensures the content is not revealed until the animation */
     border-right: .15em solid orange;
