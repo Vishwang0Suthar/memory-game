@@ -1,6 +1,6 @@
 .music {
     /* Allow the music element to take up remaining space */
-    min-height: 450px;
+    height: 450px;
     width: 100%;
     /* Make the music element fill the height */
     background-color: #eaeff1;
