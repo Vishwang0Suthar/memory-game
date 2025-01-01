@@ -6,11 +6,12 @@ import Login from "./login.jsx";
 import Music from "./music.jsx";
 import About from "./about.jsx";
 // import { setClientToken } from "./spotify";
-import Dialogue from "./components/dialogue.jsx";
+// import Dialogue from "./components/dialogue.jsx";
 import langda from "../langda.jpg";
-import { setClientToken } from "./spotify.jsx";
+// import { setClientToken } from "./spotify.jsx";
 import ParentComponent from "./components/dialogueMain.jsx";
 import Mobileview from "./components/mobliview.jsx";
+import Title from "./components/title.jsx";
 const initialCards = [
   { order: Math.ceil(Math.random() * 16), matched: false, icon: "/blinky.gif" },
   { order: Math.ceil(Math.random() * 16), matched: false, icon: "/huh.jpeg" },
@@ -189,24 +190,7 @@ function App() {
             className="game"
             id={` ${allMatched ? "confettiContainer" : ""}`}
           >
-            <div className="title">
-              <div className="head">
-                <h1>Memory Game</h1>
-                <hr />
-                <br />
-              </div>
-              <div className="desc">
-                <br />
-                <p>
-                  Welcome to our captivating memory game! Challenge your brain
-                  and test your memory skills by matching pairs of cards
-                  consecutively. But watch out, if you don't find the matching
-                  cards in time, they'll play a little game of hide-and-seek.
-                  Get ready for a delightful adventure of card-flipping fun!
-                </p>
-                <p> A dripy da coder production. </p>
-              </div>
-            </div>
+            <Title />
             <div className="board">
               {cards.map((card, index) => (
                 <div
@@ -219,8 +203,8 @@ function App() {
                   onClick={() => onCardClick(index)}
                   style={{ order: card.order }}
                   // onMouseEnter={audio_click_play}
-                  onMouseLeave={audio_click_pause}
-                  onMouseEnter={hue()}
+                  // onMouseLeave={audio_click_pause}
+                  // onMouseEnter={hue()}
                 >
                   <img
                     src={card.icon}
