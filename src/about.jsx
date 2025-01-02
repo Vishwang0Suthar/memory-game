@@ -107,8 +107,8 @@ export default function About() {
           // fill-rule="evenodd"
           // clip-rule="evenodd"
           // stroke="white"
-          height={24}
-          width={24}
+          height={22}
+          width={22}
           viewBox="0 0 417 512.238"
         >
           <path
