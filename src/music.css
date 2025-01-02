@@ -476,3 +476,10 @@
     background-color: #e19e47;
     z-index: 1;
 }
+
+
+@media (max-width: 1024px) {
+    .music {
+        height: auto;
+    }
+}

@@ -181,55 +181,48 @@ function App() {
   }, []);
 
   return (
-    <div>
-      {isMobile ? (
-        <Mobileview />
-      ) : (
-        <>
-          <div
-            className="game"
-            id={` ${allMatched ? "confettiContainer" : ""}`}
-          >
-            <Title />
-            <div className="board">
-              {cards.map((card, index) => (
-                <div
-                  key={index}
-                  className={`card ${
-                    firstCard === card || secondCard === card || card.matched
-                      ? "flip"
-                      : ""
-                  }`}
-                  onClick={() => onCardClick(index)}
-                  style={{ order: card.order }}
-                  // onMouseEnter={audio_click_play}
-                  // onMouseLeave={audio_click_pause}
-                  // onMouseEnter={hue()}
-                >
-                  <img
-                    src={card.icon}
-                    alt={`Card ${index}`}
-                    className="front"
-                  />
-                  <img src={langda} alt="Card Back" className="back" />
-                </div>
-              ))}
+    // <div>
+    //   {isMobile ? (
+    //     <Mobileview />
+    //   ) : (
+    <>
+      <div className="game" id={` ${allMatched ? "confettiContainer" : ""}`}>
+        <Title />
+        <div className="board">
+          {cards.map((card, index) => (
+            <div
+              key={index}
+              className={`card ${
+                firstCard === card || secondCard === card || card.matched
+                  ? "flip"
+                  : ""
+              }`}
+              onClick={() => onCardClick(index)}
+              style={{ order: card.order }}
+              // onMouseEnter={audio_click_play}
+              // onMouseLeave={audio_click_pause}
+              // onMouseEnter={hue()}
+            >
+              <img src={card.icon} alt={`Card ${index}`} className="front" />
+              <img src={langda} alt="Card Back" className="back" />
             </div>
-            {allMatched && <ParentComponent clickCount={clickCount} />}
-            <div className="wild">
-              <About />
-              {!token ? (
-                <div className="musicl">
-                  <Login />
-                </div>
-              ) : (
-                <Music token={token} />
-              )}
+          ))}
+        </div>
+        {allMatched && <ParentComponent clickCount={clickCount} />}
+        <div className="wild">
+          <About />
+          {!token ? (
+            <div className="musicl">
+              <Login />
             </div>
-          </div>
-        </>
-      )}
-    </div>
+          ) : (
+            <Music token={token} />
+          )}
+        </div>
+      </div>
+    </>
+    //   )}
+    // </div>
   );
 }
 
