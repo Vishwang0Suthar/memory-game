@@ -41,6 +41,8 @@ const Playlist = ({ data, isPlaying, onTogglePlaying }) => {
         try {
           const userTracks = await getPlaylistTracks(selectedPlaylist);
           setTracks(userTracks);
+          // console.log(tracks);
+
           setViewState("tracks"); // Switch to track view
         } catch (error) {
           console.error("Error fetching tracks:", error);
