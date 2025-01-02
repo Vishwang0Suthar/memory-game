@@ -187,7 +187,7 @@ function App() {
     //   ) : (
     <>
       <div className="game" id={` ${allMatched ? "confettiContainer" : ""}`}>
-        <Title />
+        <Title isMobile={isMobile} />
         <div className="board">
           {cards.map((card, index) => (
             <div
