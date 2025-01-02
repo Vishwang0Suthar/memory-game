@@ -37,7 +37,7 @@ const Dialogue = ({ clickCount, onShareClick, handleMainCloseClick }) => {
   // };
 
   return (
-    <div>
+    <>
       <div className="close" onClick={handleMainCloseClick}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -56,7 +56,7 @@ const Dialogue = ({ clickCount, onShareClick, handleMainCloseClick }) => {
       </div>
       <div className="box">
         <p>{fact}</p>
-        <p>I took you {clickCount} clicks to crack the game</p>
+        <p>It took you {clickCount} clicks to crack the game</p>
         <div className="user-opt">
           <p>Tap here to play again</p>
           <div className="button-bx">
@@ -101,7 +101,7 @@ const Dialogue = ({ clickCount, onShareClick, handleMainCloseClick }) => {
         </div>
       </div>
       {/* {showShare && <ReactShare visible={showShare} />} */}
-    </div>
+    </>
   );
 };
 

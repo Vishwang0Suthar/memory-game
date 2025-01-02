@@ -1,5 +1,5 @@
 .message {
-    position: absolute;
+    position: fixed;
     height: 110%;
     top: 0;
     margin-top: -40px;
@@ -15,9 +15,12 @@
 .close {
     height: 30px;
     width: 30px;
-    position: absolute;
+    transform: translateX(-50%);
+    /* transform: translateY(-5px); */
+    /* position: absolute;
     top: 39%;
-    right: 29%;
+    right: 29%; */
+    z-index: 1;
     border-style: solid;
     border-width: 4px;
     border-color: #fff;
@@ -106,4 +109,36 @@
         border-style: solid;
         border-color: #fff;
     } */
+}
+
+.message-child {
+    display: flex;
+    align-items: start;
+    flex-direction: row-reverse;
+
+}
+
+@media (max-width:786px) {
+    .box {
+        width: 80%;
+    }
+
+    .close {
+        top: 30%;
+        right: 5%;
+    }
+
+    .box p {
+        font-size: 14px;
+        padding: 5px 0px 5px 0px;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        transition-duration: 500ms;
+        border-width: 0px 0px 1px 0px;
+        /* border-color: #fff;
+        border-style: solid; */
+        /* &:hover {
+            border-style: solid;
+            border-color: #fff;
+        } */
+    }
 }

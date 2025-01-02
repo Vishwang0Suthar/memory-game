@@ -17,12 +17,12 @@ const DialogueMain = () => {
   };
 
   return (
-    <div>
+    <>
       {showDialogue && (
         <Dialogue clickCount={3} onShareClick={handleShareClick} />
       )}
       {showShare && <ReactShare onClose={handleCloseShare} />}
-    </div>
+    </>
   );
 };
 

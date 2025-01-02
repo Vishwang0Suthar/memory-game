@@ -97,7 +97,6 @@ const Playlist = ({ data, isPlaying, onTogglePlaying }) => {
             </>
           )}
         </h2>
-        <div className="play-pause"></div>
         <div className="navig">
           <div onClick={handleBackClick} className="back-button">
             <svg

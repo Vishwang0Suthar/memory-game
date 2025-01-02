@@ -1,6 +1,7 @@
 .music {
     /* Allow the music element to take up remaining space */
     height: 450px;
+
     width: 100%;
     /* Make the music element fill the height */
     background-color: #eaeff1;
@@ -37,6 +38,7 @@
     display: flex;
     align-items: center;
     position: sticky;
+    /* left: 0; */
     /* margin-top: -50px; */
     background-color: #fab55a;
     /* max-width: 90%; */
@@ -52,6 +54,8 @@
     max-height: 100px; */
     /* margin-left: 2em; */
     padding: 0.5em;
+
+
 }
 
 .music h1 {
@@ -96,7 +100,8 @@
 .musicheader {
     display: flex;
     /* position: relative; */
-    position: sticky;
+    /* position: sticky; */
+    height: fit-content;
     justify-content: space-between;
     /* max-height: 20%; */
 
@@ -104,6 +109,7 @@
 
 .playlists {
     display: flex;
+    /* width: 90%; */
     flex-direction: column;
     gap: 10px;
 
@@ -170,6 +176,7 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 5px;
     overflow-y: scroll;
+    /* width: 80%; */
 
     list-style: none;
 }
@@ -236,6 +243,7 @@
 .track-header {
     display: flex;
     top: 0;
+    /* width: fit-content; */
     z-index: 1;
     /* position: sticky; */
     align-items: center;
@@ -480,6 +488,108 @@
 
 @media (max-width: 1024px) {
     .music {
-        height: auto;
+        height: 450px;
+        width: auto;
+        /* width: 80%; */
     }
+
+    .music-wrap {
+        margin-right: 10px;
+    }
+
+    .playlist-item {
+        /* height: 50%;
+        width: 50%; */
+    }
+
+    .track-header {
+        margin-right: 10px;
+
+    }
+
+    .playlist-image {
+        overflow: hidden;
+        max-height: auto;
+        min-width: auto;
+        border-radius: 5px;
+
+        aspect-ratio: 1/1;
+    }
+
+    .play-list {
+        grid-template-columns: repeat(3, 0.5fr);
+
+
+    }
+
+    .playlist-name {
+        display: -webkit-box;
+        /* Fallback for older browsers */
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        /* Number of lines before truncating */
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: normal;
+        width: 50%;
+        line-height: 7px;
+        max-height: 30px;
+        text-align: left;
+    }
+
+    .playlist-details p {
+        font-size: 6px;
+        color: white;
+        font-weight: bold;
+        visibility: visible;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        display: block;
+        /* z-index: 2; */
+    }
+
+    .wild {
+        margin-right: 0px;
+    }
+
+    .music h1 {
+        width: auto;
+        font-family: "AkiraExpanded-SuperBold";
+        font-size: 16px;
+    }
+
+    .board {
+        height: calc(720px - (720px * 0.25));
+    }
+}
+
+@media (max-width: 768px) {
+    .playlist-name {
+        display: -webkit-box;
+        /* Fallback for older browsers */
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        /* Number of lines before truncating */
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: normal;
+        width: 50%;
+        line-height: 10px;
+        max-height: 30px;
+        text-align: left;
+    }
+
+    .playlist-details p {
+        font-size: 8px;
+        color: white;
+        font-weight: bold;
+        visibility: visible;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        display: block;
+        /* z-index: 2; */
+    }
+
+    .board {
+        height: calc(640px - (640px * 0.25));
+    }
+
 }

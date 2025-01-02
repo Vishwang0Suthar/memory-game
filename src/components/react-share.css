@@ -1,12 +1,13 @@
 .share-main {
-    position: absolute;
+    /* position: absolute; */
     height: 110%;
     top: 0;
     margin-top: -40px;
     width: 100%;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: start;
     z-index: 100;
     /* background: rgb(48, 48, 48); */
     backdrop-filter: blur(5px);
@@ -14,10 +15,19 @@
 }
 
 
+.share-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+
 .platforms {
     display: flex;
     padding: 20px 0px 20px 0px;
-
+    place-self: center;
     width: 80%;
     justify-content: space-around;
 }
@@ -46,4 +56,59 @@ h1 {
     font-family: "AkiraExpanded-SuperBold";
     padding: 20px 0px 0px 0px;
 
+}
+
+.box-share {
+    background: rgba(5, 5, 5, 0.8);
+    color: #fff;
+    /* box-shadow: 10px 10px rgba(45, 45, 45, 0.3); */
+    border-radius: 16px;
+    overflow: hidden;
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+
+    gap: 20px;
+    align-items: start;
+    opacity: 100%;
+    text-align: center;
+    /* height: 20vh; */
+    width: 100%;
+    padding: 5px 10px 5px 10px;
+    user-select: none;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #fff;
+    transition: all;
+    transition: ease-in-out;
+}
+
+@media (max-width:786px) {
+    .platforms {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        padding: 20px 0px 20px 0px;
+        gap: 5px;
+        width: 80%;
+        justify-content: space-around;
+    }
+
+    h1 {
+        font-family: "AkiraExpanded-SuperBold";
+        padding: 20px 0px 0px 0px;
+        font-size: 14px;
+    }
+
+    .message-child {
+        display: flex;
+        align-items: start;
+        flex-direction: row-reverse;
+        width: 80%;
+    }
+
+    /* .share-button {
+        width: 24px;
+        height: 24px;
+    } */
 }
