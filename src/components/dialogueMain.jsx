@@ -20,15 +20,17 @@ const ParentComponent = ({ clickCount }) => {
   }
   return (
     <div className="message">
-      {isDialogueVisible ? (
-        <Dialogue
-          clickCount={clickCount}
-          handleMainCloseClick={handleMainCloseClick}
-          onShareClick={handleShareClick}
-        />
-      ) : (
-        <ReactShare clickCount={clickCount} onCloseClick={handleCloseClick} />
-      )}
+      <div className="message-child">
+        {isDialogueVisible ? (
+          <Dialogue
+            clickCount={clickCount}
+            handleMainCloseClick={handleMainCloseClick}
+            onShareClick={handleShareClick}
+          />
+        ) : (
+          <ReactShare clickCount={clickCount} onCloseClick={handleCloseClick} />
+        )}
+      </div>
     </div>
   );
 };

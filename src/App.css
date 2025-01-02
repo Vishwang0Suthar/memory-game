@@ -25,7 +25,7 @@ body {
 
 .game {
     display: grid;
-    position: relative;
+    /* position: relative; */
     grid-template-columns: 28% 36% 36%;
     gap: 8px;
     max-height: 92dvh;
@@ -184,6 +184,7 @@ body {
 .board {
     /* width: calc(640px - (640px * 0.15)); */
     height: calc(960px - (960px * 0.25));
+    height: 100%;
     display: flex;
     /* margin-right: 12px; */
     flex-wrap: wrap;
@@ -276,7 +277,7 @@ body {
     display: flex;
     position: relative;
     flex-direction: column;
-    height: 100%;
+    height: fit-content;
     border-radius: 1.5%;
     margin-right: 10px;
     width: auto;
