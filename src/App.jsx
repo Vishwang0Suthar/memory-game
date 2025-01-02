@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
-
+// import { logDataToGoogleSheet } from "./backend/googlesheet.js";
 import "./App.css";
 import { handleMatch } from "./script.js";
 import Login from "./login.jsx";
 import Music from "./music.jsx";
 import About from "./about.jsx";
+import "./components/user.css";
 // import { setClientToken } from "./spotify";
 // import Dialogue from "./components/dialogue.jsx";
 import langda from "../langda.jpg";
@@ -65,14 +66,36 @@ const initialCards = [
 
 function App() {
   const [hasFlipped, setHasFlipped] = useState(false);
+  const [inputValue, setInputValue] = useState("");
   const [firstCard, setFirstCard] = useState(null);
   const [secondCard, setSecondCard] = useState(null);
   const [cards, setCards] = useState(initialCards);
   const [clickCount, setClickCount] = useState(0);
   const [allMatched, setAllMatched] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [userName, setUserName] = useState("");
+  const [entryTime, setEntryTime] = useState("");
   const audio_click = new Audio("audio/00click.mp3");
-  audio_click.load();
+  // audio_click.load();
+
+  // const handleGameCompletion = () => {
+  //   const currentTime = new Date().toISOString(); // Get the current time as entry time
+  //   setEntryTime(currentTime);
+
+  //   // Call function to log user data to Google Sheets
+  //   logDataToGoogleSheet(userName, currentTime, clickCount);
+
+  //   console.log("Game Completed!");
+  // };
+  // useEffect(() => {
+  //   const timer = setTimeout(() => {
+  //     setAllMatched(true);
+  //     handleGameCompletion();
+  //   }, 5000);
+
+  //   // Cleanup the timer if the component unmounts or if the effect is re-run
+  //   return () => clearTimeout(timer);
+  // }, []);
 
   useEffect(() => {
     // Function to update the state based on screen width
@@ -180,13 +203,35 @@ function App() {
     }
   }, []);
 
+  const handleInputChange = (e) => {
+    setUserName(inputValue);
+    console.log(userName);
+    // Update the state with input value
+  };
+
   return (
-    // <div>
-    //   {isMobile ? (
-    //     <Mobileview />
-    //   ) : (
     <>
-      <div className="game" id={` ${allMatched ? "confettiContainer" : ""}`}>
+      {userName === "" ? (
+        <div className="user-info">
+          <div className="user-name">
+            <div className="user-q">
+              <h2>Username</h2>
+              <input
+                className="user-input"
+                value={inputValue}
+                onChange={(e) => setInputValue(e.target.value)}
+                placeholder="leaderboard-name"
+              />
+            </div>
+            <button className="user-button" onClick={handleInputChange}>
+              <p>Dive in</p>
+            </button>
+          </div>
+        </div>
+      ) : (
+        <></>
+      )}
+      <div className="game" id={`${allMatched ? "confettiContainer" : ""}`}>
         <Title isMobile={isMobile} />
         <div className="board">
           {cards.map((card, index) => (
@@ -199,9 +244,6 @@ function App() {
               }`}
               onClick={() => onCardClick(index)}
               style={{ order: card.order }}
-              // onMouseEnter={audio_click_play}
-              // onMouseLeave={audio_click_pause}
-              // onMouseEnter={hue()}
             >
               <img src={card.icon} alt={`Card ${index}`} className="front" />
               <img src={langda} alt="Card Back" className="back" />
@@ -221,8 +263,6 @@ function App() {
         </div>
       </div>
     </>
-    //   )}
-    // </div>
   );
 }
 
