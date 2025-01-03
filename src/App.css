@@ -110,6 +110,12 @@ body {
 
 }
 
+.title span {
+    color: #FAB12F;
+    padding: 0px 5px 0px 5px;
+    background-color: #000000;
+}
+
 .title p:last-child {
     color: #FAB12F;
 }
