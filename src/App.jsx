@@ -15,6 +15,7 @@ import langda from "../langda.jpg";
 import ParentComponent from "./components/dialogueMain.jsx";
 import Mobileview from "./components/mobliview.jsx";
 import Title from "./components/title.jsx";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 const initialCards = [
   { order: Math.ceil(Math.random() * 16), matched: false, icon: "/blinky.gif" },
   { order: Math.ceil(Math.random() * 16), matched: false, icon: "/huh.jpeg" },
@@ -222,6 +223,8 @@ function App() {
 
   return (
     <>
+      <SpeedInsights />
+
       {userName === "" ? (
         <div className="user-info">
           <div className="user-name">
