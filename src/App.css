@@ -227,6 +227,7 @@ body {
     /* border: 2px #FEF3E2 solid; */
     box-shadow: 0 8px 6px -6px black;
     border-radius: 3.5%;
+    /* overflow: hidden; */
     position: relative;
     cursor: pointer;
     transition: transform 300ms ease-in-out;
