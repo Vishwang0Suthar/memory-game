@@ -75,7 +75,10 @@ function App() {
   const [clickCount, setClickCount] = useState(0);
   const [allMatched, setAllMatched] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-  const [userName, setUserName] = useState("");
+  const [userName, setUserName] = useState(() => {
+    // Retrieve from localStorage if available
+    return localStorage.getItem("userName") || "";
+  });
   const [entryTime, setEntryTime] = useState("");
   const audio_click = new Audio("audio/00click.mp3");
   // audio_click.load();
@@ -210,6 +213,9 @@ function App() {
     // console.log(inputValue);
 
     setUserName(inputValue);
+    localStorage.setItem("userName", inputValue);
+    // console.log(localStorage.getItem("userName"));
+
     // console.log(userName);
     // Correctly update userName here
   };
