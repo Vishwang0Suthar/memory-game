@@ -61,11 +61,11 @@ const Playlist = ({ data, isPlaying, onTogglePlaying }) => {
   };
 
   const handleForthClick = () => {
-    console.log("in");
+    // console.log("in");
 
     if (prevViewState !== null) {
       setViewState("tracks");
-      console.log("if");
+      // console.log("if");
     }
   };
 

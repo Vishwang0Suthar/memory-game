@@ -6,6 +6,8 @@ import Login from "./login.jsx";
 import Music from "./music.jsx";
 import About from "./about.jsx";
 import "./components/user.css";
+import * as XLSX from "xlsx";
+
 // import { setClientToken } from "./spotify";
 // import Dialogue from "./components/dialogue.jsx";
 import langda from "../langda.jpg";
@@ -87,6 +89,7 @@ function App() {
 
   //   console.log("Game Completed!");
   // };
+
   // useEffect(() => {
   //   const timer = setTimeout(() => {
   //     setAllMatched(true);
@@ -121,7 +124,7 @@ function App() {
       setAllMatched(true);
       handleMatch();
       // alert("All cards matched!");
-      console.log("All matched also No. of clicks = " + clickCount);
+      // console.log("All matched also No. of clicks = " + clickCount);
     }
   }, [cards, clickCount]);
 
@@ -203,10 +206,12 @@ function App() {
     }
   }, []);
 
-  const handleInputChange = (e) => {
+  const handleInputChange = () => {
+    // console.log(inputValue);
+
     setUserName(inputValue);
-    console.log(userName);
-    // Update the state with input value
+    // console.log(userName);
+    // Correctly update userName here
   };
 
   return (
@@ -232,7 +237,8 @@ function App() {
         <></>
       )}
       <div className="game" id={`${allMatched ? "confettiContainer" : ""}`}>
-        <Title isMobile={isMobile} />
+        <Title userName={userName} isMobile={isMobile} />
+
         <div className="board">
           {cards.map((card, index) => (
             <div
