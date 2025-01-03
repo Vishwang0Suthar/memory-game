@@ -15,7 +15,7 @@ import langda from "../langda.jpg";
 import ParentComponent from "./components/dialogueMain.jsx";
 import Mobileview from "./components/mobliview.jsx";
 import Title from "./components/title.jsx";
-import { SpeedInsights } from "@vercel/speed-insights/next";
+import { injectSpeedInsights } from "@vercel/speed-insights";
 const initialCards = [
   { order: Math.ceil(Math.random() * 16), matched: false, icon: "/blinky.gif" },
   { order: Math.ceil(Math.random() * 16), matched: false, icon: "/huh.jpeg" },
@@ -82,6 +82,7 @@ function App() {
   });
   const [entryTime, setEntryTime] = useState("");
   const audio_click = new Audio("audio/00click.mp3");
+  injectSpeedInsights();
   // audio_click.load();
 
   // const handleGameCompletion = () => {
@@ -223,7 +224,7 @@ function App() {
 
   return (
     <>
-      <SpeedInsights />
+      {/* <SpeedInsights /> */}
 
       {userName === "" ? (
         <div className="user-info">
