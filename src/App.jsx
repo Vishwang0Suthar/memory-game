@@ -76,8 +76,8 @@ function App() {
   const [allMatched, setAllMatched] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [userName, setUserName] = useState(() => {
-    // Retrieve from localStorage if available
-    return localStorage.getItem("userName") || "";
+    // Retrieve from sessionStorage if available
+    return sessionStorage.getItem("userName") || "";
   });
   const [entryTime, setEntryTime] = useState("");
   const audio_click = new Audio("audio/00click.mp3");
@@ -188,8 +188,8 @@ function App() {
   const [token, setToken] = useState("");
 
   useEffect(() => {
-    const token = window.localStorage.getItem("token");
-    const tokenExpiry = window.localStorage.getItem("token-expiry");
+    const token = window.sessionStorage.getItem("token");
+    const tokenExpiry = window.sessionStorage.getItem("token-expiry");
     const hash = window.location.hash;
     window.location.hash = "";
 
@@ -198,8 +198,8 @@ function App() {
         const _token = hash.split("&")[0].split("=")[1];
         const expiresIn = parseInt(hash.split("expires_in=")[1].split("&")[0]);
         const expiryTime = new Date().getTime() + expiresIn * 1000; // Convert seconds to milliseconds
-        window.localStorage.setItem("token", _token);
-        window.localStorage.setItem("token-expiry", expiryTime.toString());
+        window.sessionStorage.setItem("token", _token);
+        window.sessionStorage.setItem("token-expiry", expiryTime.toString());
         setToken(_token);
         // setClientToken(_token);
       }
@@ -213,8 +213,8 @@ function App() {
     // console.log(inputValue);
 
     setUserName(inputValue);
-    localStorage.setItem("userName", inputValue);
-    // console.log(localStorage.getItem("userName"));
+    sessionStorage.setItem("userName", inputValue);
+    // console.log(sessionStorage.getItem("userName"));
 
     // console.log(userName);
     // Correctly update userName here
