@@ -6,7 +6,7 @@ import router from "./routes/user.js"; // Adjust the path as needed
 
 const app = express();
 const PORT = 5000;
-const mongoURI = import.meta.env.VITE_MONGO_URI;
+// const mongoURI = import.meta.env.VITE_MONGO_URI;
 
 // Middleware
 app.use(cors());
