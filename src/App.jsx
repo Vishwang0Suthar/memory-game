@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 // import { logDataToGoogleSheet } from "./backend/googlesheet.js";
 import "./App.css";
+import axios from "axios";
+
 import { handleMatch } from "./script.js";
 import Login from "./login.jsx";
 import Music from "./music.jsx";
@@ -105,6 +107,27 @@ function App() {
   //   return () => clearTimeout(timer);
   // }, []);
 
+  const postClickData = async (name, clickCount) => {
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/api/save-click",
+        {
+          name,
+          clickCount,
+        }
+      );
+
+      console.log("Response:", response.data);
+      // alert("Data saved successfully!");
+    } catch (error) {
+      console.error(
+        "Error posting data:",
+        error.response?.data || error.message
+      );
+      // alert("Failed to save data.");
+    }
+  };
+
   useEffect(() => {
     // Function to update the state based on screen width
     const handleResize = () => {
@@ -127,6 +150,7 @@ function App() {
 
     if (allCardsMatched) {
       setAllMatched(true);
+      postClickData(userName, clickCount);
       handleMatch();
       // alert("All cards matched!");
       // console.log("All matched also No. of clicks = " + clickCount);
