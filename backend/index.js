@@ -9,7 +9,9 @@ const PORT = 5000;
 // const mongoURI = import.meta.env.VITE_MONGO_URI;
 
 // Middleware
-app.use(cors());
+app.use(cors({
+    origin: "https://memory-game-flax-six.vercel.app/", // Allow Vercel frontend to access the backend
+}));
 app.use(express.json());
 
 // Connect to MongoDB
