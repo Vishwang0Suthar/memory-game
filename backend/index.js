@@ -2,20 +2,21 @@ import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 import router from "./routes/user.js"; // Adjust the path as needed
-// import mongoURI from meta.env.VITE_MONGO_URI;
+import dotenv from "dotenv";  // Import dotenv
+
+// Load environment variables from .env file
+dotenv.config();
 
 const app = express();
 const PORT = 5000;
-// const mongoURI = import.meta.env.VITE_MONGO_URI;
+const mongoURI = process.env.VITE_MONGO_URI;  // Access the variable using process.env
 
 // Middleware
-app.use(cors({
-    origin: "https://memory-game-flax-six.vercel.app/", // Allow Vercel frontend to access the backend
-}));
+app.use(cors());
 app.use(express.json());
 
 // Connect to MongoDB
-mongoose.connect(process.env.MONGO_URI, {
+mongoose.connect(mongoURI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 })
