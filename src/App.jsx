@@ -100,8 +100,8 @@ function App() {
   // useEffect(() => {
   //   const timer = setTimeout(() => {
   //     setAllMatched(true);
-  //     postClickData(userName, clickCount);
-  //   }, 10000);
+  //     // postClickData(userName, clickCount);
+  //   }, 3000);
 
   //   // Cleanup the timer if the component unmounts or if the effect is re-run
   //   return () => clearTimeout(timer);
@@ -110,7 +110,7 @@ function App() {
   const postClickData = async (name, clickCount) => {
     try {
       const response = await axios.post(
-        "https://memory-game-9qqb.onrender.com/",
+        "http://localhost:5000/api/save-click",
         {
           name,
           clickCount,
@@ -150,7 +150,7 @@ function App() {
 
     if (allCardsMatched) {
       setAllMatched(true);
-      postClickData(userName, clickCount);
+      // postClickData(userName, clickCount);
       handleMatch();
       alert("All cards matched!");
       // console.log("All matched also No. of clicks = " + clickCount);
